@@ -1,0 +1,16 @@
+SpiffGIS is currently nothing more than a GeoTools LAB build on the tutorials 
+here: http://docs.geotools.org
+
+
+Add the following proxy repository to your Nexus proxy if your using one:
+
+Repository ID: osgeo
+Repository Name: Open Source Geospatial Foundation Repository
+Repository Type: proxy
+Repository Policy: Release
+Repository Format: maven2
+Contained in groups: 
+   Public Repositories
+Remote URL: http://download.osgeo.org/webdav/geotools/
+
+
