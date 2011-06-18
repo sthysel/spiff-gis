@@ -1,6 +1,6 @@
 SpiffGIS is currently nothing more than a GeoTools LAB build on the tutorials 
-here: http://docs.geotools.org
-
+here: http://docs.geotools.org. Its implimented using the Netbeans Platform
+and build using maven.
 
 Add the following proxy repository to your Nexus proxy if your using one:
 

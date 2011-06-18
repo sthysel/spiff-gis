@@ -1,24 +1,9 @@
 package thyscom.spiffgis.mapviewer;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import javax.swing.Action;
-import javax.swing.JButton;
-import org.geotools.data.FileDataStore;
-import org.geotools.data.FileDataStoreFinder;
-import org.geotools.data.simple.SimpleFeatureSource;
-import org.geotools.map.DefaultMapContext;
-import org.geotools.map.MapContext;
-import org.geotools.renderer.lite.StreamingRenderer;
 import org.geotools.swing.JMapPane;
-import org.geotools.swing.data.JFileDataStoreChooser;
-import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
-import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -37,31 +22,26 @@ persistenceType = TopComponent.PERSISTENCE_ALWAYS)
 @TopComponent.OpenActionRegistration(displayName = "#CTL_MapViewerAction",
 preferredID = "MapViewerTopComponent")
 public final class MapViewerTopComponent extends TopComponent {
-    
-    private JMapPane mapPane;
-    private JButton loadBtn;
+
+    private MapViewerPane mapPane;
     
     public MapViewerTopComponent() {
         initComponents();
         setName(NbBundle.getMessage(MapViewerTopComponent.class, "CTL_MapViewerTopComponent"));
         setToolTipText(NbBundle.getMessage(MapViewerTopComponent.class, "HINT_MapViewerTopComponent"));
         
-        mapPane = new JMapPane();
-        loadBtn = new JButton("Load");
-        loadBtn.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                loadMap();
-            }
-        });
-        
-        
+        mapPane = new MapViewerPane();
         add(mapPane, BorderLayout.CENTER);
-        add(loadBtn, BorderLayout.SOUTH);
-        
     }
 
+    /**
+     * The map pane
+     * @return 
+     */
+    public MapViewerPane getMapViewerPane() {
+        return mapPane;
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -95,30 +75,5 @@ public final class MapViewerTopComponent extends TopComponent {
     void readProperties(java.util.Properties p) {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
-    }
-    
-    private void loadMap() {
-        try {
-            // display a data store file chooser dialog for shapefiles
-            File file = JFileDataStoreChooser.showOpenFile("shp", null);
-            if (file == null) {
-                return;
-            }
-            
-            FileDataStore store = FileDataStoreFinder.getDataStore(file);
-            SimpleFeatureSource featureSource = store.getFeatureSource();
-
-            // Create a map context and add our shapefile to it
-            MapContext map = new DefaultMapContext();
-            map.setTitle("Quickstart");
-            map.addLayer(featureSource, null);
-            mapPane.setMapContext(map);
-            mapPane.setRenderer(new StreamingRenderer());
-            mapPane.reset();
-            
-            
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        }
     }
 }
