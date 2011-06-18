@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: thyscom/spiffgis/mapviewer/Bundle.properties
+OpenIDE-Module-Layer: thyscom/spiffgis/mapviewer/layer.xml
+OpenIDE-Module-Requires: org.openide.windows.WindowManager

@@ -67,6 +67,7 @@
         <module>branding</module>
         <module>application</module>
     <module>GeoToolsWrapper</module>
+    <module>MapViewer</module>
   </modules>
 
     <properties>

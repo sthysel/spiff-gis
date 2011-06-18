@@ -26,11 +26,6 @@
             <version>${netbeans.version}</version>
             <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>branding</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <!-- To run NbModuleSuite functional tests in src/test/java, use nbjunit (assumes RELEASE70 or later):
         <dependency>
             <groupId>org.netbeans.api</groupId>
@@ -47,6 +42,16 @@
             <scope>test</scope>
         </dependency>
         -->
+        <dependency>
+            <groupId>thyscom.spiffgiss</groupId>
+            <artifactId>branding</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>MapViewer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -95,4 +100,5 @@
             </build>
         </profile>
     </profiles>
+    <groupId>thyscom.spiffgis</groupId>
 </project>
